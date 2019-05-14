@@ -1,19 +1,27 @@
 const path = require('path')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config')
-console.log(__dirname)
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const devConfig = {
   mode: 'development',
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, '/dist')
+    // publicPath: "/",
+    filename: 'js/[name].js',
+    chunkFilename: "js/[name].js"
   },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, '/dist'),
     port: 9000,
     compress: true,
-  }
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].css'
+    }),
+  ]
 }
 
 module.exports = merge(baseConfig, devConfig)
