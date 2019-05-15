@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import llt from '../assets/images/llt.jpg'
 
 class App extends Component {
   render() {
@@ -6,6 +7,7 @@ class App extends Component {
     return (
       <div>
         <h1>app component</h1>
+        <img src={llt}/>
         <ul>
           {
             arr.map((name, index) => (<li key={index}>{name}</li>))

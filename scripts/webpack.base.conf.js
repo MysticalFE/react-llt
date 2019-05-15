@@ -1,6 +1,5 @@
 const webpack = require('webpack')
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -23,7 +22,10 @@ module.exports = {
         test: /\.(sc|sa|c)ss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../'  //解决在css中图片不显示问题
+            }
           },
           {
             loader: 'css-loader',
@@ -46,29 +48,81 @@ module.exports = {
         test: /\.js$/,
         use: 'babel-loader',
         exclude: /node_modules/
-      }
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|webp)$/,
+        use: [
+          //图片加载loader
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              limit: 30000, //小于20k,转为base64
+              outputPath: 'assets/images',
+            }
+          },
+          //图片压缩
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              //jpg/jpeg
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              //png
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(eot|woff|woff2|ttf|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name]-[hash:5].min.[ext]',
+              limit: 5000, // fonts file size <= 5KB, use 'base64'; else, output svg file
+              // publicPath: 'asssets/font/',
+              // outputPath: 'asssets/fonts/'
+            }
+          }
+        ]
+      },
+      //配置中存在html-loader时，会导致在生成html 模版时<%= htmlWebpackPlugin.options.title %>作为字符串不会被编译
+      //或者使用ejs
+
+      // {
+      //   test: /\.html$/,
+      //   use: [
+      //     {
+      //       loader: 'html-loader',
+      //       options: {
+      //         attrs: ['img:src']
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'react-llt',
-      filename: 'index.html',
-      template: resolvePath('../src/index.html'),
-      inject: true
-    }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
+      // {
+      //   from: 'src/assets/images',
+      //   to: 'assets/images'
+      // },
       {
-        from: '../src/assets/images',
-        to: 'images'
+        from: 'src/assets/font',
+        to: 'assets/font'
       },
       {
-        from: '../src/assets/font',
-        to: 'font'
-      },
-      {
-        from: '../src/assets/style',
-        to: 'css'
+        from: 'src/assets/style',
+        to: 'assets/css'
       }
     ])
   ],

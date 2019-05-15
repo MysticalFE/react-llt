@@ -2,6 +2,7 @@ const merge = require('webpack-merge')
 const path = require('path')
 const baseConfig = require('./webpack.base.conf')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 console.log(path.resolve(__dirname, '../dist/css'))
@@ -13,6 +14,17 @@ const prodConfig = {
     chunkFilename: 'js/[id].[hash].js'
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'react-llt',
+      filename: 'index.html',
+      template: path.resolve(__dirname, '../src/index.html'),
+      inject: true,
+      minify: {
+        removeComments: true, //移除 HTML 中的注释
+        collapseWhitespace: true, //删除空白符与换行符
+        minifyCSS: true  //压缩内联 css
+      }
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name]-[contenthash].css',
       chunkFilename: 'css/..[id]-[contenthash].css',

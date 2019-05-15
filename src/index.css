@@ -5,4 +5,8 @@ body {
 #root {
   color: white;
   background-color: black;
+  background: url(./assets/images/llt.jpg);
+  width: 20px;
+  height: 20px;
 }
+
