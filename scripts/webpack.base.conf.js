@@ -86,9 +86,9 @@ module.exports = {
             loader: 'url-loader',
             options: {
               name: '[name]-[hash:5].min.[ext]',
-              limit: 5000, // fonts file size <= 5KB, use 'base64'; else, output svg file
+              limit: 8192, // fonts file size <= 5KB, use 'base64'; else, output svg file
               // publicPath: 'asssets/font/',
-              // outputPath: 'asssets/fonts/'
+              outputPath: 'asssets/fonts/'
             }
           }
         ]
@@ -116,10 +116,10 @@ module.exports = {
       //   from: 'src/assets/images',
       //   to: 'assets/images'
       // },
-      {
-        from: 'src/assets/font',
-        to: 'assets/font'
-      },
+      // {
+      //   from: 'src/assets/font',
+      //   to: 'assets/font'
+      // },
       {
         from: 'src/assets/style',
         to: 'assets/css'
@@ -134,6 +134,7 @@ module.exports = {
       cacheGroups: {
         commons: {
           name: 'commons',
+          chunks: 'initial',
           minSize: 0, //表示在压缩前的最小模块大小,默认值是 30kb
           minChunks: 2, // 最小公用次数
           priority: 5, // 优先级
