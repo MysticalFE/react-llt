@@ -1,0 +1,42 @@
+//flex 居中
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+//position 居中
+@mixin position-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 10;
+}
+//设置dom宽高
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+//背景图
+@mixin screen-bg($url, $w: 100vw, $h: 100vh) {
+  width: $w;
+  height: $h;
+  background: url($url) no-repeat;
+  background-size: cover;
+}
+//单行文本省略
+@mixin ellipsis($w: 100%) {
+  width: $w;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+//多行文本省略
+@mixin ellipsis-multi($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

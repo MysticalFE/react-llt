@@ -88,7 +88,7 @@ module.exports = {
               name: '[name]-[hash:5].min.[ext]',
               limit: 8192, // fonts file size <= 5KB, use 'base64'; else, output svg file
               // publicPath: 'asssets/font/',
-              outputPath: 'asssets/fonts/'
+              outputPath: 'asssets/font/'
             }
           }
         ]
@@ -158,7 +158,7 @@ module.exports = {
     // }
   },
   resolve: {
-    extensions: ['.js', 'jsx', '.json', '.css', 'scss', 'sass'],
+    extensions: ['.js', 'jsx', '.json', '.css', 'scss', 'sass', 'less'],
     alias: {
       pages: resolvePath('../src/pages'),
       assets: resolvePath('../src/assets'),

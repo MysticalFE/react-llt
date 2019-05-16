@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import 'assets/font/iconfont.css'
 import llt from 'assets/images/llt.jpg'
 
 class App extends Component {
