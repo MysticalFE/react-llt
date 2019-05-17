@@ -1,8 +1,9 @@
-//flex 居中
-@mixin flex-center() {
+//flex
+@mixin flex-box($j: center, $a: center, $d: row) {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: $j;
+  align-items: $a;
+  flex-direction: $d;
 }
 //position 居中
 @mixin position-center {

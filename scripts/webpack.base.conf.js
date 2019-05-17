@@ -41,6 +41,13 @@ module.exports = {
                 require('autoprefixer')
               ]
             }
+          },
+          //将全局scss在局部文件中不引入也可以引用相关的变量，函数
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: './src/assets/style/index.scss'
+            }
           }
         ]
       },
@@ -165,6 +172,7 @@ module.exports = {
       components: resolvePath('../src/components'),
       utils: resolvePath('../src/utils'),
       services: resolvePath('../src/services'),
+      layouts: resolvePath('../src/layouts')
     }
   }
 }

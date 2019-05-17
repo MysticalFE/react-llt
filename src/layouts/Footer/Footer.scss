@@ -1,0 +1,26 @@
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  background: $white;
+  border-top: 1px solid $border;
+  @include size(100%, 0.44rem);
+  ul {
+    height: 100%;
+    @include flex-box(space-around, center);
+    li {
+      @include flex-box(center, center, column);
+      i {
+        font-size: 22px;
+        margin-bottom: 2.5px;
+      }
+      span {
+        font-size: 12px;
+      }
+      &.active{
+        color: $nav-active-text-color;
+      }
+    }
+  }
+}
