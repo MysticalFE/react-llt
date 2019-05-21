@@ -10,16 +10,19 @@
     height: 100%;
     @include flex-box(space-around, center);
     li {
-      @include flex-box(center, center, column);
-      i {
-        font-size: 22px;
-        margin-bottom: 2.5px;
-      }
-      span {
-        font-size: 12px;
-      }
-      &.active{
-        color: $nav-active-text-color;
+      a {
+        display: block;
+        @include flex-box(center, center, column);
+        i {
+          font-size: 22px;
+          margin-bottom: 2.5px;
+        }
+        span {
+          font-size: 12px;
+        }
+        &.active{
+          color: $nav-active-text-color;
+        }
       }
     }
   }

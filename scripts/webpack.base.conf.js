@@ -11,7 +11,7 @@ function resolvePath(filename) {
 
 module.exports = {
   entry: {
-    index: resolvePath('../src/index.js')
+    index: resolvePath('../index.js')
   },
   output: {
     // path: path.resolve(__dirname, '../dist/js')
@@ -172,7 +172,8 @@ module.exports = {
       components: resolvePath('../src/components'),
       utils: resolvePath('../src/utils'),
       services: resolvePath('../src/services'),
-      layouts: resolvePath('../src/layouts')
+      layouts: resolvePath('../src/layouts'),
+      router: resolvePath('../src/router')
     }
   }
 }

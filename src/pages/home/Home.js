@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import Footer from 'layouts/Footer/Footer'
+// import Footer from 'layouts/Footer'
 
 class Home extends Component {
   render() {
     return (
-      <Footer />
+      // <Footer />
+      <div>shouye</div>
     )
   }
 }
