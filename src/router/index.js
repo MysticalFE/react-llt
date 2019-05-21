@@ -10,12 +10,12 @@ class Routers extends Component {
       <React.Fragment>
         <BrowserRouter>
           <Suspense fallback={<div>loading...</div>}>
-            <Route path="/" exact={true} component={Home}/>
-            <Route path="/home" component={Home}/>
+            <Route path="/home" component={Home} />
+            <Route path="/" exact={true} component={Home} />
           </Suspense>
           <Switch>
-            <Route path="/" exact={true} component={Footer}/>
-            <Route path="/home" component={Footer}/>
+            <Route path="/home" component={Footer} />
+            <Route path="/" exact={true} component={Footer} />
           </Switch>
         </BrowserRouter>
       </React.Fragment>

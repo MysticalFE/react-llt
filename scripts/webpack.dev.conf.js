@@ -16,6 +16,7 @@ const devConfig = {
     contentBase: path.join(__dirname, '/dist'),
     port: 9000,
     compress: true,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
