@@ -13,10 +13,19 @@ const devConfig = {
   },
   devtool: 'inline-source-map',
   devServer: {
+    index: 'falsy',
     contentBase: path.join(__dirname, '/dist'),
     port: 9000,
     compress: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: 'https://shoptest3.lianwifi.com/index.php/topapi',
+        pathRewrite: {'^/api' : ''},
+        changeOrigin: true, 
+        secure: false
+      }
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
