@@ -46,7 +46,7 @@ function Fetch(url, opt) {
   if(!opt) opt = {};
   if(!opt.timeout) opt.timeout = 10000;
   if(url && typeof url !== 'string') return;
-  // if(opt.method && !methods.some(m => m == method.toUpperCase())) return;
+  if(opt.method && !methods.some(m => m == method.toUpperCase())) return;
   if (opt.data) {
     //post 设置headers,body
     if(method.toUpperCase() == 'POST') {
