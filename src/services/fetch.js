@@ -78,7 +78,7 @@ function Fetch(url, opt) {
     const fecth_promise = fetch(url, reqParams).then(dealResponse).then(data => {
       if(data.errorcode == 0) {
         resolve(data.data)
-        console.log(data.data)
+        // console.log(data.data)
       } else {
         reject('请求出错')
       }

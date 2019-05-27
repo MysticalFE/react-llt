@@ -5,16 +5,19 @@ import Fetch from 'services/fetch'
 class Home extends Component {
   constructor(props) {
     super(props)
+  }
+  componentDidMount() {
     this.getData()
   }
-  getData = () => {
-    
+  getData = async () => {
+    const res = await Fetch('/api?format=json&v=v1&method=category.itemCategory')
+    console.log(res)
     
   }
   render() {
     return (
       // <Footer />
-      <div>shouye</div>
+      <div>category</div>
     )
   }
 }
