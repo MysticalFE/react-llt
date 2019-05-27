@@ -1,5 +1,5 @@
 import React, { Component, Suspense, lazy } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import cs from 'classnames'
 import './Footer.scss'
 
@@ -20,7 +20,7 @@ const tarbar = [
     'icon': 'icon-tab_sousuo',
     'active-icon': 'icon-tab_sousuo_sele',
     'text': '搜索',
-    'router': '/search'
+    'router': '/category'
   },
   {
     'icon': 'icon-tab_gouwuche',
@@ -55,14 +55,18 @@ class Footer extends Component {
         <div className="bottom-nav">
           <ul>
           {
-              tarbar.map((item, i) => (
-                <li key={i} onClick={() => this.itemChange(i)}>
-                  <Link to={item.router} className={cs({'active': this.state.index === i})}>
-                    <i className={cs('icon', {[`${item.icon}`]: this.state.index != i }, {[`${item['active-icon']}`]: this.state.index === i})}></i>
-                    <span>{ item.text }</span>
-                  </Link>
-                </li>
-              ))
+              tarbar.map((item, i) => {
+                const matchPath = this.props.location.pathname == '/' ? '/home' : this.props.location.pathname;
+                const exactPath = matchPath == item.router;
+                return (
+                  <li key={i} onClick={() => this.itemChange(i)}>
+                    <Link to={item.router} className={cs({'active': exactPath})}>
+                      <i className={cs('icon', item.icon, {[`${item['active-icon']}`]: exactPath})}></i>
+                      <span>{ item.text }</span>
+                    </Link>
+                  </li>
+                )
+              })
             }
           </ul>
         </div>
@@ -70,4 +74,4 @@ class Footer extends Component {
   }
 }
 
-export default Footer
+export default withRouter(Footer)
