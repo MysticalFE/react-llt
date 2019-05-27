@@ -18,6 +18,14 @@
   width: $w;
   height: $h;
 }
+//设置宽
+@mixin w($w) {
+  width: $w;
+}
+//设置高
+@mixin h($h) {
+  height: $h;
+}
 //背景图
 @mixin screen-bg($url, $w: 100vw, $h: 100vh) {
   width: $w;
@@ -39,5 +47,17 @@
   -webkit-line-clamp: $line;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+//设置圆形边框
+@mixin border-rudis($w, $h, $br, $bgColor: $white) {
+  background: $bgColor;
+  border-radius: $br;
+  @include size($w, $h);
+}
+//设置字体
+@mixin font($c: $c222, $fs: initial, $fw: normal) {
+  color: $c;
+  font-size: $fs;
+  font-weight: $fw;
 }
 

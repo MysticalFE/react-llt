@@ -1,0 +1,24 @@
+.cate-wrap {
+  .cate-header {
+    .cate-title {
+      @include h(0.44rem);
+      @include flex-box();
+      font-size: 0.17rem;
+    }
+    .cate-input-wrap {
+      @include h(0.49rem);
+      border-bottom: 1px solid $base-bottom;
+      padding: 0 10px 10px 10px;
+      .cate-input-cantent {
+        @include border-rudis(100%, 0.39rem, 0.19rem, $base-bottom);
+        @include flex-box();
+        span {
+          @include font($c999, 0.15rem);
+          &:nth-child(2) {
+            margin-left: $m10;
+          }
+        }
+      }
+    }
+  }
+}
