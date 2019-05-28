@@ -1,18 +1,18 @@
-import React, { Component, Suspense } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
-import Footer from 'layouts/Footer'
-const Home = React.lazy(() => import('pages/Home'))
-const Category = React.lazy(() => import('pages/Category'))
+import React, { Component, Suspense } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Loading from "components/Loading";
+import Footer from "layouts/Footer";
+const Home = React.lazy(() => import("pages/Home"));
+const Category = React.lazy(() => import("pages/Category"));
 
 class Routers extends Component {
   render() {
     return (
       <React.Fragment>
         <BrowserRouter>
-          <Suspense fallback={<div>loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <Route path="/home" component={Home} />
-            <Route path="/category" component={Category}></Route>
+            <Route path="/category" component={Category} />
             <Route path="/" exact={true} component={Home} />
           </Suspense>
           <Switch>
@@ -22,8 +22,8 @@ class Routers extends Component {
           </Switch>
         </BrowserRouter>
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default Routers
+export default Routers;

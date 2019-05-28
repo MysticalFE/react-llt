@@ -1,0 +1,62 @@
+.loading {
+  display: inline-flex;
+  @include position-center();
+
+  .loader {
+    position: relative;
+    @include size(100%, 100%);
+  }
+
+  .line-bounce {
+    @include size(100%, 100%);
+
+    span {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      border-radius: 5px;
+      background: $c222;
+      @include size(12%, 80%);
+      animation: top-down-bounce 1s ease-in-out infinite;
+
+      &:nth-child(1) {
+        left: 0%;
+        animation-delay: -0.65s;
+      }
+
+      &:nth-child(2) {
+        left: 25%;
+        animation-delay: -0.75s;
+      }
+
+      &:nth-child(3) {
+        left: 50%;
+        animation-delay: -0.9s;
+      }
+
+      &:nth-child(4) {
+        left: 75%;
+        animation-delay: -0.75s;
+      }
+
+      &:nth-child(5) {
+        left: 100%;
+        animation-delay: -0.65s;
+      }
+    }
+  }
+
+  @keyframes top-down-bounce {
+    0% {
+      transform: scaleY(1);
+    }
+
+    50% {
+      transform: scaleY(0.4);
+    }
+
+    100% {
+      transform: scaleY(1);
+    }
+  }
+}

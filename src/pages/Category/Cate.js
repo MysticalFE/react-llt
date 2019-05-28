@@ -2,23 +2,32 @@ import React, { Component } from "react";
 import Fetch from "services/fetch";
 import cs from "classnames";
 import "./Cate.scss";
-// import Footer from 'layouts/Footer'
+import CateList from "layouts/Category/CateList";
+import Loading from "components/Loading";
 
 class Catetory extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLoading: false
+    };
   }
   componentDidMount() {
-    this.getData();
+    setTimeout(() => {
+      this.getData();
+    }, 800);
   }
   getData = async () => {
     const res = await Fetch(
       "/api?format=json&v=v1&method=category.itemCategory"
     );
-    console.log(res);
+    this.listData = res.categorys;
+    this.setState({
+      isLoading: true
+    });
+    // console.log(this.state.listData);
   };
-
-  render() {
+  templ = () => {
     return (
       <div className="cate-wrap">
         <div className="cate-header">
@@ -30,8 +39,13 @@ class Catetory extends Component {
             </div>
           </div>
         </div>
+        <CateList data={this.listData} />
       </div>
     );
+  };
+  render() {
+    const loading = <Loading type="line-bounce" />;
+    return !this.state.isLoading ? loading : this.templ();
   }
 }
 
