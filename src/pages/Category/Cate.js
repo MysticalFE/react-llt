@@ -29,23 +29,25 @@ class Catetory extends Component {
   };
   templ = () => {
     return (
-      <div className="cate-wrap">
-        <div className="cate-header">
-          <div className="cate-title">搜索</div>
-          <div className="cate-input-wrap">
-            <div className="cate-input-cantent">
-              <span className="icon icon-ic_sousuo" />
-              <span>点击进行搜索</span>
-            </div>
+      <div className="cate-header">
+        <div className="cate-title">搜索</div>
+        <div className="cate-input-wrap">
+          <div className="cate-input-cantent">
+            <span className="icon icon-ic_sousuo" />
+            <span>点击进行搜索</span>
           </div>
         </div>
-        <CateList data={this.listData} />
       </div>
     );
   };
   render() {
     const loading = <Loading type="line-bounce" />;
-    return !this.state.isLoading ? loading : this.templ();
+    return (
+      <div className="cate-wrap">
+        {this.templ()}
+        {!this.state.isLoading ? loading : <CateList data={this.listData} />}
+      </div>
+    );
   }
 }
 
