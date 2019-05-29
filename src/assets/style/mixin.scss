@@ -1,10 +1,12 @@
 //flex
-@mixin flex-box($j: center, $a: center, $d: row) {
+@mixin flex-box($j: center, $a: center, $d: row, $w: no-wrap) {
   display: flex;
   justify-content: $j;
   align-items: $a;
   flex-direction: $d;
+  flex-wrap: $w;
 }
+
 //position 居中
 @mixin position-center {
   position: absolute;
@@ -13,19 +15,23 @@
   transform: translate3d(-50%, -50%, 0);
   z-index: 10;
 }
+
 //设置dom宽高
 @mixin size($w, $h) {
   width: $w;
   height: $h;
 }
+
 //设置宽
 @mixin w($w) {
   width: $w;
 }
+
 //设置高
 @mixin h($h) {
   height: $h;
 }
+
 //背景图
 @mixin screen-bg($url, $w: 100vw, $h: 100vh) {
   width: $w;
@@ -33,6 +39,7 @@
   background: url($url) no-repeat;
   background-size: cover;
 }
+
 //单行文本省略
 @mixin ellipsis($w: 100%) {
   width: $w;
@@ -40,6 +47,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 //多行文本省略
 @mixin ellipsis-multi($line) {
   display: -webkit-box;
@@ -48,16 +56,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 //设置圆形边框
 @mixin border-rudis($w, $h, $br, $bgColor: $white) {
   background: $bgColor;
   border-radius: $br;
   @include size($w, $h);
 }
+
 //设置字体
-@mixin font($c: $c222, $fs: initial, $fw: normal) {
+@mixin font($fs: initial, $c: $c222, $fw: normal) {
   color: $c;
   font-size: $fs;
   font-weight: $fw;
 }
-

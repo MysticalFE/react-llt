@@ -7,7 +7,7 @@ class AniTransition extends Component {
     type: "fade",
     show: true,
     timeout: 500,
-    tag: "null",
+    tag: "div",
     key: null
   };
   render() {
@@ -15,6 +15,7 @@ class AniTransition extends Component {
     return (
       <TransitionGroup component={tag}>
         <CSSTransition
+          in={show}
           component={tag}
           timeout={timeout}
           classNames={type}

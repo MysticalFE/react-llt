@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Fetch from "services/fetch";
 import cs from "classnames";
 import "./Cate.scss";
