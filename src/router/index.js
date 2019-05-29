@@ -1,29 +1,31 @@
-import React, { Component, Suspense } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { Component, Suspense, Fragment } from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Loading from "components/Loading";
 import Footer from "layouts/Footer";
+import AniTransition from "components/AnimationTransition";
 const Home = React.lazy(() => import("pages/Home"));
 const Category = React.lazy(() => import("pages/Category"));
 
 class Routers extends Component {
   render() {
+    const { location } = this.props;
     return (
-      <React.Fragment>
-        <BrowserRouter>
+      <AniTransition type="fade" tag="section" key={location.pathname}>
+        <Fragment>
           <Suspense fallback={<Loading />}>
             <Route path="/home" component={Home} />
             <Route path="/category" component={Category} />
             <Route path="/" exact={true} component={Home} />
           </Suspense>
-          <Switch>
+          <Switch location={location}>
             <Route path="/home" component={Footer} />
             <Route path="/category" component={Footer} />
             <Route path="/" exact={true} component={Footer} />
           </Switch>
-        </BrowserRouter>
-      </React.Fragment>
+        </Fragment>
+      </AniTransition>
     );
   }
 }
 
-export default Routers;
+export default withRouter(Routers);
