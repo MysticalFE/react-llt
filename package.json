@@ -60,7 +60,7 @@
     "redux": "^4.0.1"
   },
   "lint-staged": {
-    "*.{js,json,css,scss,sass,less,vue}": [
+    "*.{js,json,css,scss,sass,less}": [
       "prettier --write",
       "git add"
     ]

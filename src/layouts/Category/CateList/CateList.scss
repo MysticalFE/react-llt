@@ -10,18 +10,34 @@
       position: absolute;
       left: 0;
       bottom: 0;
-      @include size(1.08rem, 100%);
+      @include size(0.9rem, 100%);
       overflow: auto;
       -webkit-overflow-scrolling: touch;
 
       ul {
         li {
+          position: relative;
           @include size(0.9rem, 0.52rem);
           @include font(0.16rem);
           text-align: center;
           line-height: 0.52rem;
           background: $cate-bg;
           overflow-x: hidden;
+
+          &.active {
+            background: $white;
+            color: $base-red;
+          }
+
+          &.active:before {
+            position: absolute;
+            left: 0;
+            width: 0.04rem;
+            height: 0.25rem;
+            background: $nav-active-text-color;
+            transform: translateY(50%);
+            content: "";
+          }
         }
       }
     }
@@ -29,9 +45,9 @@
     // 列表右侧
     .cate-list-right {
       position: absolute;
-      left: 1.08rem;
+      left: 0.9rem;
       bottom: 0;
-      @include size(2.67rem, 100%);
+      @include h(100%);
       padding-right: 0.1rem;
       overflow: auto;
 
@@ -40,6 +56,7 @@
           .lv2-top {
             @include flex-box(space-between);
             @include h(0.52rem);
+            padding-left: 0.2rem;
 
             span {
               &:nth-child(1) {
@@ -61,6 +78,12 @@
           .ad-img {
             @include size(2.57rem, 0.8rem);
             margin-bottom: 0.11rem;
+            padding-left: 0.2rem;
+
+            img {
+              @include size(2.57rem, 0.8rem);
+              border-radius: 0.05rem;
+            }
           }
 
           .lv2-ul {
@@ -69,7 +92,7 @@
 
             li {
               @include flex-box(space-between, center, column);
-              @include size(0.85rem, 0.75rem);
+              @include size(0.91rem, 0.75rem);
               text-align: center;
               margin-bottom: 0.13rem;
 
