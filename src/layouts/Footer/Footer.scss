@@ -6,23 +6,28 @@
   background: $white;
   border-top: 1px solid $border;
   @include size(100%, 0.44rem);
+
   ul {
     height: 100%;
     @include flex-box(space-around, center);
+
     li {
       a {
         display: block;
         @include flex-box(center, center, column);
+
         i {
-          font-size: 22px;
-          margin-bottom: 2.5px;
+          font-size: 0.22rem;
+          margin-bottom: 0.025rem;
           color: inherit;
         }
+
         span {
-          font-size: 12px;
+          font-size: 0.12rem;
           color: inherit;
         }
-        &.active{
+
+        &.active {
           color: $nav-active-text-color;
         }
       }

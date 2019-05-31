@@ -23,7 +23,9 @@ class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 0
+      index: 0,
+      cateListScrollY: 0,
+      cateListHeight: 0
     };
     this.cateList = createRef();
     this.cateRightList = createRef();
@@ -34,26 +36,55 @@ class List extends Component {
       getViewportSize().height -
       getEleRect(".cate-header").height -
       getEleRect(".bottom-nav").height;
-    this.cateList.current.style.height = `${listHeight}px`;
+    this.setState({
+      cateListHeight: `${listHeight}px`
+    });
     this.getScrollTops();
-    this.cateRightList.current.addEventListener("scroll", this.scrollEvent);
+    this.cateRightUl.current.addEventListener("scroll", this.scrollEvent);
   }
-  scrollEvent = () => {};
+  scrollEvent = () => {
+    console.log(111);
+  };
   getScrollTops = () => {
     this.tops = [];
     toArray(this.cateRightUl.current.children).map(item =>
       this.tops.push(item.offsetTop)
     );
   };
+  scrollAnti = (end, i) => {
+    window.cancelAnimationFrame(animate);
+    let startTime = null;
+    const animate = timestamp => {
+      const start = this.state.cateListScrollY;
+      const speed = 50 * i;
+      const targetStyle = start >= end ? end : start + speed;
+      if (!startTime) startTime = timestamp;
+      const timeout = timestamp - startTime;
+      const progress = parseInt((speed * timeout) / 10 + start);
+      const currentStyle = Math.min(progress, parseInt(targetStyle));
+      console.log(`${currentStyle}--${end}`);
+      if (currentStyle <= end) {
+        this.cateRightList.current.scrollTop = currentStyle;
+        this.setState({
+          cateListScrollY: currentStyle
+        });
+        window.requestAnimationFrame(animate);
+      } else {
+        window.cancelAnimationFrame(animate);
+      }
+    };
+    window.requestAnimationFrame(animate);
+  };
   itemChangeLi = i => {
+    const indexIntarl = Math.abs(i - this.state.index);
     this.setState({
       index: i
     });
-    // if (this.state.index == 0) this.cateRightList.current.scrollTop = 0;
-    console.log();
-    console.log(this.state.index);
-    console.log(this.tops[this.state.index - 1]);
-    this.cateRightList.current.scrollTop = this.tops[this.state.index - 1];
+    const endScrollY = this.tops[i];
+    this.scrollAnti(endScrollY, indexIntarl);
+    // this.setState({
+    //   cateListScrollY: this.tops[i]
+    // });
   };
   cateListRight() {
     const data = this.props.data;
@@ -124,7 +155,10 @@ class List extends Component {
   render() {
     return (
       <AniTransition>
-        <div className="cate-list-wrap" ref={this.cateList}>
+        <div
+          className="cate-list-wrap"
+          style={{ height: this.state.cateListHeight }}
+        >
           <div className="cate-list-content">
             {this.cateListLeft()}
             {this.cateListRight()}
