@@ -56,15 +56,19 @@ class List extends Component {
     let startTime = null;
     const animate = timestamp => {
       const start = this.state.cateListScrollY;
-      const speed = 50 * i;
+      let speed = 55 * i;
+      console.log(`start${start}`);
+      if (end - start < speed) {
+        speed = end - start;
+      }
       const targetStyle = start >= end ? end : start + speed;
       if (!startTime) startTime = timestamp;
       const timeout = timestamp - startTime;
       const progress = parseInt((speed * timeout) / 10 + start);
       const currentStyle = Math.min(progress, parseInt(targetStyle));
       console.log(`${currentStyle}--${end}`);
-      if (currentStyle <= end) {
-        this.cateRightList.current.scrollTop = currentStyle;
+      this.cateRightList.current.scrollTop = currentStyle;
+      if (currentStyle < end) {
         this.setState({
           cateListScrollY: currentStyle
         });
