@@ -40,10 +40,19 @@ class List extends Component {
       cateListHeight: `${listHeight}px`
     });
     this.getScrollTops();
-    this.cateRightUl.current.addEventListener("scroll", this.scrollEvent);
+    this.cateRightList.current.addEventListener("touchmove", this.scrollEvent);
   }
-  scrollEvent = () => {
-    console.log(111);
+  scrollEvent = e => {
+    const scrollTop = this.cateRightList.current.scrollTop;
+    console.log(scrollTop);
+    console.log(this.tops);
+    this.tops.forEach((item, i) => {
+      if (scrollTop >= item - 100 && screenTop < this.tops[i + 1]) {
+        this.setState({
+          index: i
+        });
+      }
+    });
   };
   getScrollTops = () => {
     this.tops = [];
@@ -51,41 +60,59 @@ class List extends Component {
       this.tops.push(item.offsetTop)
     );
   };
-  scrollAnti = (end, i) => {
-    window.cancelAnimationFrame(animate);
+  scrollAnti = (end, i, direction) => {
     let startTime = null;
     const animate = timestamp => {
       const start = this.state.cateListScrollY;
-      let speed = 55 * i;
-      console.log(`start${start}`);
-      if (end - start < speed) {
-        speed = end - start;
-      }
-      const targetStyle = start >= end ? end : start + speed;
+      let speed = 55 * i,
+        targetStyle = 0,
+        progress = 0,
+        currentStyle = 0;
       if (!startTime) startTime = timestamp;
       const timeout = timestamp - startTime;
-      const progress = parseInt((speed * timeout) / 10 + start);
-      const currentStyle = Math.min(progress, parseInt(targetStyle));
+      // console.log(`start${start}`);
+      if (Math.abs(end - start) < speed) {
+        speed = Math.abs(end - start);
+      }
+
+      if (direction == "down") {
+        targetStyle = start >= end ? end : start + speed;
+        progress = parseInt((speed * timeout) / 10 + start);
+        currentStyle = Math.min(progress, parseInt(targetStyle));
+      } else {
+        targetStyle = start <= end ? end : start - speed;
+        progress = parseInt(start - (speed * timeout) / 10);
+        currentStyle = Math.max(progress, parseInt(targetStyle));
+      }
       console.log(`${currentStyle}--${end}`);
       this.cateRightList.current.scrollTop = currentStyle;
-      if (currentStyle < end) {
+      if (currentStyle == end) {
+        window.cancelAnimationFrame(animate);
+      } else {
         this.setState({
           cateListScrollY: currentStyle
         });
         window.requestAnimationFrame(animate);
-      } else {
-        window.cancelAnimationFrame(animate);
       }
     };
     window.requestAnimationFrame(animate);
   };
+
   itemChangeLi = i => {
     const indexIntarl = Math.abs(i - this.state.index);
-    this.setState({
-      index: i
-    });
     const endScrollY = this.tops[i];
-    this.scrollAnti(endScrollY, indexIntarl);
+    let direction = "";
+    // this.setState({
+    //   index: i
+    // });
+    this.setState((prevState, props) => {
+      let direction = prevState.index < i ? "down" : "up";
+      this.scrollAnti(endScrollY, indexIntarl, direction);
+      return {
+        index: i
+      };
+    });
+
     // this.setState({
     //   cateListScrollY: this.tops[i]
     // });
