@@ -1,5 +1,5 @@
 //flex
-@mixin flex-box($j: center, $a: center, $d: row, $w: no-wrap) {
+@mixin flex-box($j: center, $a: center, $d: row, $w: nowrap) {
   display: flex;
   justify-content: $j;
   align-items: $a;

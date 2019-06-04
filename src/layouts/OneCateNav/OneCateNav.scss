@@ -1,0 +1,33 @@
+.nav-content {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+
+  ul {
+    position: relative;
+    @include flex-box($j: flex-start);
+    height: 0.44rem;
+    padding: 0.15rem;
+    font-size: 0.15rem;
+    color: $c222;
+    border-bottom: 1px solid $base-bottom;
+
+    li {
+      @include size(max-content, 0.42rem) margin-left: 0.2rem;
+      line-height: 0.42rem;
+      text-align: center;
+
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+
+      .nav-selected {
+        border-bottom: 2px solid $base-red;
+        height: 0.42rem;
+        display: inline-block;
+        position: relative;
+        @include font($c: $base-red, $fs: 0.16rem, $fw: 700);
+      }
+    }
+  }
+}
