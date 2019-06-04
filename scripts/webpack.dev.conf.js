@@ -20,7 +20,7 @@ const devConfig = {
     historyApiFallback: true,
     proxy: {
       "/api": {
-        target: "https://shop99.lianwifi.com/index.php/topapi",
+        target: "https://shop98.lianwifi.com/index.php/topapi",
         pathRewrite: { "^/api": "" },
         changeOrigin: true,
         secure: false
