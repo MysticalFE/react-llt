@@ -5,6 +5,7 @@ import Footer from "layouts/Footer";
 import AniTransition from "components/AnimationTransition";
 const Home = React.lazy(() => import("pages/Home"));
 const Category = React.lazy(() => import("pages/Category"));
+const Search = React.lazy(() => import("pages/Search"));
 
 class Routers extends Component {
   render() {
@@ -15,6 +16,7 @@ class Routers extends Component {
           <Suspense fallback={<Loading />}>
             <Route path="/home" component={Home} />
             <Route path="/category" component={Category} />
+            <Route path="/search" component={Search} />
             <Route path="/" exact={true} component={Home} />
           </Suspense>
           <Switch location={location}>

@@ -44,10 +44,10 @@ class List extends Component {
   }
   scrollEvent = e => {
     const scrollTop = this.cateRightList.current.scrollTop;
-    console.log(scrollTop);
-    console.log(this.tops);
+    // const listScrollTop =
+    //   this.cateRightUl.current.clientHeight - getViewportSize().height;
     this.tops.forEach((item, i) => {
-      if (scrollTop >= item - 100 && screenTop < this.tops[i + 1]) {
+      if (scrollTop >= item && screenTop < this.tops[i + 1]) {
         this.setState({
           index: i
         });
@@ -84,7 +84,7 @@ class List extends Component {
         progress = parseInt(start - (speed * timeout) / 10);
         currentStyle = Math.max(progress, parseInt(targetStyle));
       }
-      console.log(`${currentStyle}--${end}`);
+      // console.log(`${currentStyle}--${end}`);
       this.cateRightList.current.scrollTop = currentStyle;
       if (currentStyle == end) {
         window.cancelAnimationFrame(animate);

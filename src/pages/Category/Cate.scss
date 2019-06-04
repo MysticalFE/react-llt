@@ -11,16 +11,15 @@
     }
 
     .cate-input-wrap {
-      @include h(0.49rem);
       border-bottom: 1px solid $base-bottom;
-      padding: 0 10px 10px 10px;
+      padding: 10px;
 
       .cate-input-cantent {
         @include border-rudis(100%, 0.39rem, 0.19rem, $base-bottom);
         @include flex-box();
 
         span {
-          @include font($c999, 0.15rem);
+          @include font(0.15rem, $c999);
 
           &:nth-child(2) {
             margin-left: $m10;

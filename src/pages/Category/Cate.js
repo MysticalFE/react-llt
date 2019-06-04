@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import { Link } from "react-router-dom";
 import Fetch from "services/fetch";
 import cs from "classnames";
 import "./Cate.scss";
@@ -27,12 +28,15 @@ class Catetory extends Component {
     });
     // console.log(this.state.listData);
   };
+  pushRouter = () => {
+    this.props.history.push("/search");
+  };
   templ = () => {
     return (
       <div className="cate-header">
-        <div className="cate-title">搜索</div>
+        {/* <div className="cate-title">搜索</div> */}
         <div className="cate-input-wrap">
-          <div className="cate-input-cantent">
+          <div className="cate-input-cantent" onClick={this.pushRouter}>
             <span className="icon icon-ic_sousuo" />
             <span>点击进行搜索</span>
           </div>
