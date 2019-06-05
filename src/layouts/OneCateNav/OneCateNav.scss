@@ -2,6 +2,17 @@
   width: 100%;
   overflow: hidden;
   display: flex;
+  position: relative;
+
+  &::after {
+    border-bottom: 1px solid $base-bottom;
+    content: "";
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
 
   ul {
     position: relative;
@@ -10,10 +21,10 @@
     padding: 0.15rem;
     font-size: 0.15rem;
     color: $c222;
-    border-bottom: 1px solid $base-bottom;
 
     li {
-      @include size(max-content, 0.42rem) margin-left: 0.2rem;
+      @include size(max-content, 0.42rem);
+      margin-left: 0.2rem;
       line-height: 0.42rem;
       text-align: center;
 
