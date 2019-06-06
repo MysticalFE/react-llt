@@ -4,6 +4,7 @@ import AniTransition from "components/AnimationTransition";
 import "./CateList.scss";
 import { getEleRect, getViewportSize } from "utils/dom";
 import { handleImgUrl, toArray } from "utils/util";
+import { on, off } from "utils/event";
 
 function CateLogo(props) {
   return (
@@ -40,7 +41,11 @@ class List extends Component {
       cateListHeight: `${listHeight}px`
     });
     this.getScrollTops();
-    this.cateRightList.current.addEventListener("touchmove", this.scrollEvent);
+    // this.cateRightList.current.addEventListener("touchmove", this.scrollEvent);
+    on(this.cateRightList.current, "touchmove", this.scrollEvent);
+  }
+  componentWillUnmount() {
+    off(this.cateRightList.current, "touchmove");
   }
   scrollEvent = e => {
     const scrollTop = this.cateRightList.current.scrollTop;
