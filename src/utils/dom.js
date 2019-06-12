@@ -1,3 +1,10 @@
+//获取屏幕可视宽，高
+function getClient() {
+  return {
+    width: document.documentElement.clientWidth || document.body.clientWidth,
+    height: document.documentElement.clientHeight || document.body.clientHeight
+  };
+}
 //获取dom
 function getEle(el) {
   return document.querySelector(el);
@@ -56,4 +63,11 @@ function getScrollParent(node) {
   return node.ownerDocument || node.documentElement || document.documentElement;
 }
 
-export { getEleRect, getEle, getAllEle, getViewportSize, getScrollParent };
+export {
+  getEleRect,
+  getEle,
+  getAllEle,
+  getViewportSize,
+  getScrollParent,
+  getClient
+};

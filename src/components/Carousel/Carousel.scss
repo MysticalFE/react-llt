@@ -1,0 +1,18 @@
+.swiper-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  .swiper-list-wrap {
+    display: flex;
+    overflow: hidden;
+
+    .swiper-list {
+      display: flex;
+      width: auto;
+
+      .swiper-list-item {
+      }
+    }
+  }
+}

@@ -1,7 +1,8 @@
-import React, { Component, createRef } from "react";
+import React, { Component, Fragment } from "react";
 import Fetch from "services/fetch";
 import Loading from "components/Loading";
 import OneNav from "layouts/OneCateNav";
+import Swiper from "./Swiper";
 // import Footer from 'layouts/Footer'
 
 class Home extends Component {
@@ -36,11 +37,14 @@ class Home extends Component {
         {!this.state.isLoading ? (
           loading
         ) : (
-          <OneNav
-            data={this.data}
-            widget="one_nav"
-            location={this.props.location}
-          />
+          <Fragment>
+            <OneNav
+              data={this.data}
+              widget="one_nav"
+              location={this.props.location}
+            />
+            <Swiper data={this.data} widget="slider" />
+          </Fragment>
         )}
       </div>
     );

@@ -1,7 +1,6 @@
 import React, { Component, createRef } from "react";
 import cs from "classnames";
 import "./OneCateNav.scss";
-import { Transform } from "stream";
 
 const FIRST_NAV = {
   cat_id: "",
