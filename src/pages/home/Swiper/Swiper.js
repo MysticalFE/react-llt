@@ -19,7 +19,7 @@ class Swiper extends Component {
 
   render() {
     return (
-      <Carousel>
+      <Carousel loop={true}>
         {this.data[0].params.pic.map((item, index) => (
           <div key={index}>
             <img src={item.imagesrc} />

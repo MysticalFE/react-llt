@@ -1,6 +1,7 @@
 import React, { Component, createRef } from "react";
 import cs from "classnames";
 import AniTransition from "components/AnimationTransition";
+import { IntersectionObserverImage } from "components/LoadImage";
 import "./CateList.scss";
 import { getEleRect, getViewportSize } from "utils/dom";
 import { handleImgUrl, toArray } from "utils/util";
@@ -150,10 +151,7 @@ class List extends Component {
                       data-secname={val.cat_name}
                     >
                       <div className="lv2-li-img">
-                        <img
-                          data-originsrc={handleImgUrl(val.cat_logo)}
-                          src={handleImgUrl(val.cat_logo)}
-                        />
+                        <img data-originsrc={handleImgUrl(val.cat_logo)} />
                       </div>
                       <p>{val.cat_name}</p>
                     </li>
@@ -197,7 +195,9 @@ class List extends Component {
         >
           <div className="cate-list-content">
             {this.cateListLeft()}
-            {this.cateListRight()}
+            <IntersectionObserverImage>
+              {this.cateListRight()}
+            </IntersectionObserverImage>
           </div>
         </div>
       </AniTransition>

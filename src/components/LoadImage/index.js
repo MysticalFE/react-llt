@@ -1,1 +1,1 @@
-export { default } from "./LoadImage";
+export { RectLoadImage, IntersectionObserverImage } from "./LoadImage";

@@ -99,6 +99,7 @@
               .lv2-li-img {
                 @include size(0.5rem, 0.5rem);
                 margin-bottom: 0.08rem;
+                background: $base-bg;
               }
 
               p {
