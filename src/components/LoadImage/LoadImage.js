@@ -3,7 +3,7 @@
  * @Author: Jack.jia
  * @Date: 2019-06-06 14:20:45
  * @LastEditors: Jack.jia
- * @LastEditTime: 2019-06-18 15:35:15
+ * @LastEditTime: 2019-06-19 18:41:49
  */
 import React, { Component, Fragment, cloneElement } from "react";
 import "./LoadImage.scss";
@@ -11,7 +11,7 @@ import "./LoadImage.scss";
 class RectLoadImage extends Component {
   componentDidMount() {}
   render() {
-    return <div>正常的</div>;
+    return <div>正常的111</div>;
   }
 }
 
