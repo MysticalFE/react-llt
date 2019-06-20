@@ -40,7 +40,7 @@ function promiseTimeout(time, callback) {
 
 /**
  * timeout不是请求连接超时的含义，它表示请求的response时间，包括请求的连接、服务器处理及服务器响应回来的时间；
- * fetch的timeout即使超时发生了，本次请求也不会被abort丢弃掉，仍然会发送到服务器端，只是本次请求的响应内容被丢弃而已s；
+ * fetch的timeout即使超时发生了，本次请求也不会被abort丢弃掉，仍然会发送到服务器端，只是本次请求的响应内容被丢弃；
  */
 function Fetch(url, opt) {
   if (!opt) opt = {};
